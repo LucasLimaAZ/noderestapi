@@ -22,4 +22,4 @@ app.get('/api/user/retrieve', UserController.retrieve)
 app.delete('/api/user/delete', UserController.delete)
 
 // Start Server
-app.listen(3000, () => console.log('Server started...'))
+app.listen(3001, () => console.log('Server started...'))
