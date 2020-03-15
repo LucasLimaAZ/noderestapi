@@ -1,0 +1,33 @@
+article{
+    box-shadow: 1px 2px 4px 1px rgba(0,0,0,0.3);
+    background-color:white;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    font-family: monospace;
+    color: #444;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+article ul{
+    padding-left: 30px;
+}
+
+.acessar{
+    border: 2px solid #DA552F;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: #DA552F !important;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acessar:hover{
+    transition: 0.2s;
+    background: #DA552F;
+    color:white !important;
+}
