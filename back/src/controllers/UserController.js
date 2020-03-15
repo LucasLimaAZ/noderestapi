@@ -31,7 +31,7 @@ module.exports = {
     },
 
     retrieve: (req, res) => {
-        UserModel.find()
+        UserModel.find({_id: req.params.id} = {})
         .then(result => {
             if(!result) res.json({ success: false, result: "No results found." })
 

@@ -4,8 +4,12 @@ import './styles.css'
 import { Link } from 'react-router-dom'
 
 export default class Main extends Component{
-    state = {
-        users: [],
+    constructor(props){
+        super(props)
+
+        this.state = {
+            users: [],
+        }
     }
 
     componentDidMount(){
@@ -16,6 +20,12 @@ export default class Main extends Component{
         const response = await api.get('user/retrieve')
 
         this.setState({ users: response.data.result})
+    }
+
+    addState(){
+        this.setState({ 
+            users: [{name: 'testinho', email: 'testinho', password: 'testinho'}]
+        })
     }
 
     render(){
@@ -31,7 +41,7 @@ export default class Main extends Component{
                         <Link className="acessar" to={`/user/${user._id}`}>Acessar</Link>
                     </article>
                 )) }
-            </div>
+            </div> 
         )
     }
 }
