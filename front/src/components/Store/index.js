@@ -50,7 +50,6 @@ export default class Store extends Component{
                                 <li>Password: ********</li>
                             </ul>
                             <button onClick={this.storeUser} className="acessar">Cadastrar</button>
-                            <button onClick={Main.addState.bind(Main)} className="btn btn-primary">Adicionar State</button>
                         </div>
                     </div>
                 </div>

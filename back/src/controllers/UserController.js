@@ -31,13 +31,25 @@ module.exports = {
     },
 
     retrieve: (req, res) => {
-        UserModel.find({_id: req.params.id} = {})
-        .then(result => {
-            if(!result) res.json({ success: false, result: "No results found." })
-
-            res.json({ success: true, result: result })
-        })
-        .catch(err => res.json({ success: false, result: err }))
+        if(req.params.id){
+            UserModel.find({_id: req.params.id})
+            .then(result => {
+                if(!result) res.json({ success: false, result: "No results found." })
+    
+                res.json({ success: true, result: result })
+            })
+            .catch(err => res.json({ success: false, result: err }))
+        }
+        else{
+            UserModel.find()
+            .then(result => {
+                if(!result) res.json({ success: false, result: "No results found." })
+    
+                res.json({ success: true, result: result })
+            })
+            .catch(err => res.json({ success: false, result: err }))
+        }
+            
     },
 
     delete: (req, res) => {
