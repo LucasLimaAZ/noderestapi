@@ -3,11 +3,18 @@ import api from '../../services/api'
 import './styles.css'
 import { Link } from 'react-router-dom'
 
+const styles = {
+    transition: "all 0.5s ease-out"
+}
+
 export default class Main extends Component{
     constructor(props){
         super(props)
 
         this.state = {
+            success: {
+                opacity: "0",
+            },
             users: [],
             name: null,
             email: null,
@@ -19,8 +26,13 @@ export default class Main extends Component{
         event.preventDefault()
         const dados = this.state
         api.post("http://127.0.0.1:3001/api/user/create", dados)
-        this.addState(dados)
-        alert("Cadastrado com sucesso!")
+        .then(response => {
+            this.addState([response.data.result])
+        })
+            
+
+        this.setState({ success: {opacity: "1"} })
+        window.setTimeout(() => {this.setState({ success: {opacity: "0"} })}, 1200)
     }
 
     handleChange = (event) => {
@@ -42,7 +54,7 @@ export default class Main extends Component{
 
     addState(dados){
         this.setState({ 
-            users: this.state.users.concat([dados])
+            users: this.state.users.concat([dados[0]])
         })
     }
 
@@ -58,6 +70,7 @@ export default class Main extends Component{
                                 <input type="text" name="name" placeholder="Seu nome" required/>
                                 <input type="email" name="email" placeholder="Seu email" required/>
                                 <input type="password" name="password" placeholder="Sua senha" required/>
+                                <p style={{...styles, opacity: this.state.success.opacity}} className="cadastrado-sucesso">Cadastrado com sucesso!</p>
                             </form>
                         </div>
                         <div className="col-md-4">

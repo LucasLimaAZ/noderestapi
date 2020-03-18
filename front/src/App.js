@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Routes from './routes'
 import Header from './components/Header'
-import Store from './components/Store'
 
 function App() {
   return (
