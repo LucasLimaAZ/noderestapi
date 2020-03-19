@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import api from '../../services/api'
 import './styles.css'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 const styles = {
     transition: "all 0.5s ease-out"
@@ -33,6 +35,26 @@ export default class Main extends Component{
 
         this.setState({ success: {opacity: "1"} })
         window.setTimeout(() => {this.setState({ success: {opacity: "0"} })}, 1200)
+    }
+
+    deleteUser = (e) => {
+        let id = e.currentTarget.id
+
+        if(window.confirm("Você tem certeza de que deseja excluir este usuário?"))
+            api.post(`http://127.0.0.1:3001/api/user/delete`, {_id: id})
+            .then(response => {
+                this.removeUserCard(id)
+            })
+    }
+
+    removeUserCard = (user) => {
+        const newUsers = this.state.users.filter(users => {
+            return users._id !== user
+        })
+
+        this.setState({
+            users: [...newUsers]
+        })
     }
 
     handleChange = (event) => {
@@ -89,6 +111,7 @@ export default class Main extends Component{
                 <div className="users-list container">
                     { this.state.users.map((user, index) => (
                         <article className="col-md-6 offset-md-3" key={index}>
+                            <FontAwesomeIcon id={user._id} onClick={this.deleteUser} className="delete-icon float-right" icon={faTrash} />
                             <ul>
                                 <li><b>Nome: </b>{ user.name }</li>
                                 <li><b>Email: </b>{ user.email }</li>

@@ -12,6 +12,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/nodeapi', { useNewUrlParser: true })
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
     next()
 })
 app.use(express.urlencoded({ extended: true }))
@@ -24,7 +25,7 @@ const UserController = require('./controllers/UserController')
 app.post('/api/user/create', UserController.create)
 app.post('/api/user/update', UserController.update)
 app.get('/api/user/retrieve/:id?', UserController.retrieve)
-app.delete('/api/user/delete', UserController.delete)
+app.post('/api/user/delete', UserController.delete)
 
 // Start Server
 app.listen(3001, () => console.log('Server started...'))

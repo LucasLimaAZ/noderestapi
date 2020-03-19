@@ -89,3 +89,8 @@ article ul{
     color: #444;
     border-radius: 5px;
 }
+
+.delete-icon{
+    color: red;
+    cursor: pointer;
+}

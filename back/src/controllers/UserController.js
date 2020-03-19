@@ -53,7 +53,7 @@ module.exports = {
     },
 
     delete: (req, res) => {
-        UserModel.remove({_id: req.body._id})
+        UserModel.deleteOne({ "_id" : req.body._id })
         .then(result => {
             if(!result) res.json({ success: false, result: "No user found with the specified Id." })
 
