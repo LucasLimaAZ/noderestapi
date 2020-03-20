@@ -52,9 +52,7 @@ export default class Main extends Component{
             return users._id !== user
         })
 
-        this.setState({
-            users: [...newUsers]
-        })
+        this.setState({ users: [...newUsers] })
     }
 
     handleChange = (event) => {
